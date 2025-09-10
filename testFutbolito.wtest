@@ -1,0 +1,23 @@
+import wollok.game.*
+import objetos.*
+
+
+describe "Test de futbolito"{
+    method initialize(){
+        game.cellSize(40)
+	    game.width(15)
+	    game.height(10)
+    }
+
+    test "Patear pelota"{
+        
+        
+        assert.equals({lionel.patear()})
+        lionel.irHastaPelota()
+        lionel.patear()
+        
+
+    }
+}
+
+
