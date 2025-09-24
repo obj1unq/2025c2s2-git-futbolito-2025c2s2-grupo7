@@ -16,6 +16,15 @@ object lionel {
 	method avanzar() {
 		position = game.at((game.width() - 1).min(position.x() + 1), position.y()) 
 	}
+	method taquito() {
+		self.validarTaquito()
+		objetivo.patearAtras()
+	}
+	method validarTaquito() {
+		if( not (position == objetivo.position()))  {
+			 self.error ("No esta en la misma posicion que la objetivo")
+	  	}
+	}
 	
 	method levantarla(){
 		self.validarPosicionDeObjetivo()
@@ -24,7 +33,7 @@ object lionel {
 
 	method validarPosicionDeObjetivo(){
 		if (not self.tieneElObjetivo()){
-			self.error("Lionel no está en la misma posición que la pelota.")
+			self.error("Lionel no está en la misma posición que la objetivo.")
 		}
 	}
 
@@ -53,5 +62,10 @@ object pelota {
 
 	method bajar(){
 		game.schedule(2000, {=> position = position.down(1)})
+	}
+
+	method patearAtras() {
+		position = game.at( (position.x() - 2).max(0), position.y()   )
+
 	}
 }
