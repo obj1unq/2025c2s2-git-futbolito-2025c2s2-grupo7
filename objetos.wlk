@@ -16,14 +16,15 @@ object lionel {
 	method avanzar() {
 		position = game.at((game.width() - 1).min(position.x() + 1), position.y()) 
 	}
-	method taquito() {
-		self.validarTaquito()
-		objetivo.patearAtras()
+
+	method patear(){
+		self.validarPosicionDeObjetivo()
+		objetivo.moverPelotaAlPatear()
 	}
-	method validarTaquito() {
-		if( not (position == objetivo.position()))  {
-			 self.error ("No esta en la misma posicion que la objetivo")
-	  	}
+
+	method taquito() {
+		self.validarPosicionDeObjetivo()
+		objetivo.patearAtras()
 	}
 	
 	method levantarla(){
@@ -50,6 +51,11 @@ object lionel {
 object pelota {
 	const property image="pelota.png"
 	var property position = game.at(5,5)
+
+	method moverPelotaAlPatear(){
+		
+		position = game.at(((position.x()+3).min(game.width()-1)),position.y())
+	}
 
 	method levantarseYBajar(){
 		self.levantarse()
