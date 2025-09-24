@@ -11,10 +11,14 @@ describe "Test" {
     pelota.position(game.at(3,5))
     lionel.position(game.at(3,5))
     assert.equals(pelota.position(),lionel.position())
+    lionel.taquito()
+    assert.equals( lionel.position().left(2) , pelota.position() )
+    
+    
     pelota.position(game.at(3,5))
     lionel.position(game.at(4,5))
     assert.throwsException({ lionel.taquito() })
 
-
+    
   }
 }
