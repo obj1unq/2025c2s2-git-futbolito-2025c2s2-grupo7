@@ -1,0 +1,24 @@
+import objetos.*
+
+
+describe "Test" {
+    method initialize(){
+        game.cellSize(40)
+	    game.width(35)
+	    game.height(30)
+    }
+  test "Taquito" {
+    pelota.position(game.at(3,5))
+    lionel.position(game.at(3,5))
+    assert.equals(pelota.position(),lionel.position())
+    lionel.taquito()
+    assert.equals( lionel.position().left(2) , pelota.position() )
+    
+    
+    pelota.position(game.at(3,5))
+    lionel.position(game.at(4,5))
+    assert.throwsException({ lionel.taquito() })
+
+    
+  }
+}
