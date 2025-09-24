@@ -3,10 +3,11 @@ import wollok.game.*
 
 object lionel {
 	var property position = game.at(3,5)
+	var image = "lionel-titular.png"
 	const objetivo = pelota
 	
 	method image() {
-		return "lionel-titular.png"
+		return image
 	}
 
 	method retroceder() {
@@ -45,6 +46,23 @@ object lionel {
 	method tieneElObjetivo(){
 		return position == objetivo.position()
 	}
+
+	method cambiarCamiseta() { 
+		self.validarCambioCamiseta()
+		if (image == "lionel-titular.png"){
+			image = "lionel-suplente.png"
+		}else{
+			image = "lionel-titular.png"
+		}
+	}
+
+	method validarCambioCamiseta(){
+		if (!self.puedeCambiarCamiseta()) {self.error("Error")}
+	}
+	
+	method puedeCambiarCamiseta(){
+		return position.x() == 0
+	} 
 }
 
 
@@ -75,3 +93,4 @@ object pelota {
 
 	}
 }
+
