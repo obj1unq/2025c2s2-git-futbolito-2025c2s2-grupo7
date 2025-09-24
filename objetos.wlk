@@ -2,8 +2,8 @@
 import wollok.game.*
 
 object lionel {
-	
 	var property position = game.at(3,5)
+	const objetivo = pelota
 	
 	method image() {
 		return "lionel-titular.png"
@@ -17,10 +17,41 @@ object lionel {
 		position = game.at((game.width() - 1).min(position.x() + 1), position.y()) 
 	}
 	
+	method levantarla(){
+		self.validarPosicionDeObjetivo()
+		objetivo.levantarseYBajar()
+	}
+
+	method validarPosicionDeObjetivo(){
+		if (not self.tieneElObjetivo()){
+			self.error("Lionel no está en la misma posición que la pelota.")
+		}
+	}
+
+	method buscarla(){
+		position = objetivo.position()
+	}
+
+	method tieneElObjetivo(){
+		return position == objetivo.position()
+	}
 }
 
 
 object pelota {
 	const property image="pelota.png"
-	var property position = game.at(5,5)	
+	var property position = game.at(5,5)
+
+	method levantarseYBajar(){
+		self.levantarse()
+		self.bajar()
+	}
+
+	method levantarse(){
+		position = position.up(1)
+	}
+
+	method bajar(){
+		game.schedule(2000, {=> position = position.down(1)})
+	}
 }

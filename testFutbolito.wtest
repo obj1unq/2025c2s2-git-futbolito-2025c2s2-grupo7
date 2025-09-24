@@ -1,0 +1,15 @@
+import objetos.*
+
+describe "Futbolito"{
+    method initialize(){
+        game.cellSize(40)
+        game.width(15)
+        game.height(10)
+    }
+
+    test "Levantarla"{
+        lionel.buscarla()
+        lionel.levantarla()
+        assert.equals(pelota.position(), lionel.position().up(1))
+    }
+}
